@@ -1,0 +1,9 @@
+*.suo
+*.user
+/*.nupkg
+.nuget/
+[Bb]in/
+[Bb]uild/
+[Oo]bj/
+[Oo]bj/
+packages/*/
