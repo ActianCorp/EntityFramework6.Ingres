@@ -26,8 +26,6 @@ using NLog.Config;
 using NLog.Targets;
 using NLog;
 using Ingres.Client;
-//using Npgsql.Logging;
-
 using NUnit.Framework;
 
 // ReSharper disable once CheckNamespace
@@ -49,13 +47,11 @@ namespace EntityFramework6.Ingres.Tests
         static bool _loggingSetUp;
 
         /// <summary>
-        /// Unless the NPGSQL_TEST_DB environment variable is defined, this is used as the connection string for the
+        /// Unless the INGRES_TEST_DB environment variable is defined, this is used as the connection string for the
         /// test database.
         /// </summary>
         const string DefaultConnectionString = 
-"Server=Blundsford-w541;Port=M67;Database=ef6db;User ID=ingres;Password=What$now-135";
-        //const string DefaultConnectionString = "Server=thoda01-790;Port=MM7;User ID=ingres;Password=Djtdjtjt8;Database=ingres_test_ef6";
-        //const string DefaultConnectionString = "Server=localhost;User ID=npgsql_tests;Password=npgsql_tests;Database=npgsql_tests_ef6";
+"Server=myserver;Port=II7;User ID=ingres;Password=mypassword;Database=ingres_test_ef6";
 
         #region Setup / Teardown
 
@@ -78,8 +74,6 @@ namespace EntityFramework6.Ingres.Tests
 
             if (!_loggingSetUp)
             {
-                //NpgsqlLogManager.Provider = new NLogLoggingProvider();
-                //NpgsqlLogManager.IsParameterLoggingEnabled = true;
                 _loggingSetUp = true;
             }
         }
@@ -99,11 +93,6 @@ namespace EntityFramework6.Ingres.Tests
             }
             catch (IngresException) // e)
             {
-                //if (e. e.SqlState == "3D000")
-                //    TestUtil.IgnoreExceptOnBuildServer("Please create a database npgsql_tests, owned by user npgsql_tests");
-                //else if (e.SqlState == "28P01")
-                //    TestUtil.IgnoreExceptOnBuildServer("Please create a user npgsql_tests as follows: create user npgsql_tests with password 'npgsql_tests'");
-                //else
                     throw;
             }
 

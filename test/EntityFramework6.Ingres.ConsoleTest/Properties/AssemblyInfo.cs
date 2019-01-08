@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ingres .NET Entity Framework6 Provider")]
-[assembly: AssemblyDescription("Ingres .NET Entity Framework6 Provider")]
+[assembly: AssemblyTitle("EntityFramework6.Ingres.ConsoleTest")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Actian Corporation")]
-[assembly: AssemblyProduct("EntityFramework6.Ingres")]
-[assembly: AssemblyCopyright("Copyright © 2018 Actian Corporation. All Rights Reserved.")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("EntityFramework6.Ingres.ConsoleTest")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d9bf2b32-a327-4880-a9dd-ad16d5577e0a")]
+[assembly: Guid("28d8a842-fa8c-4258-8705-cb58c3e36c4c")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,6 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0000")]
-[assembly: AssemblyFileVersion("1.0.1110."+
-                                           "00")]  // revision
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

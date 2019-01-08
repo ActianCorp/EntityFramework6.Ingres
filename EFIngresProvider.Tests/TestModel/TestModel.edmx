@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+  <!--
+    <Schema Namespace="sysgen_efingres_unittestModel.Store" Provider="EFIngresProvider" ProviderManifestToken="Ingres 10.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+ -->
+    <Schema Namespace="sysgen_efingres_unittestModel.Store" Provider="Ingres.Client"    ProviderManifestToken="Ingres 10.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ansaettelse">
+          <Key>
+            <PropertyRef Name="medl_ident" />
+            <PropertyRef Name="lbnr" />
+          </Key>
+          <Property Name="medl_ident" Type="integer" Nullable="false" />
+          <Property Name="lbnr" Type="integer" Nullable="false" />
+          <Property Name="arbst_nr" Type="integer" Nullable="false" />
+          <Property Name="fra_dato" Type="ingresdate" Nullable="false" />
+          <Property Name="til_dato" Type="ingresdate" Nullable="false" />
+          <Property Name="form" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="arbejds_time" Type="money" Nullable="false" />
+          <Property Name="primaer_ansaettelse" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="reg_tid" Type="ingresdate" Nullable="false" />
+          <Property Name="reg_init" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="reg_vers_nr" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="customerid" />
+          </Key>
+          <Property Name="customerid" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="companyname" Type="varchar" MaxLength="40" Nullable="false" />
+<!--
+          <Property Name="contactname" Type="varchar" MaxLength="30" />
+          <Property Name="contacttitle" Type="varchar" MaxLength="30" />
+-->
+          <Property Name="contactname" Type="nvarchar" MaxLength="30" />
+          <Property Name="contacttitle" Type="nvarchar" MaxLength= "Max" />
+          <Property Name="address" Type="varchar" MaxLength="60" />
+          <Property Name="city" Type="varchar" MaxLength="32" />
+          <Property Name="region" Type="varchar" MaxLength="15" />
+          <Property Name="postalcode" Type="varchar" MaxLength="10" />
+          <Property Name="country" Type="varchar" MaxLength="15" />
+          <Property Name="phone" Type="varchar" MaxLength="24" />
+          <Property Name="fax" Type="varchar" MaxLength="24" />
+          <Property Name="contactdate" Type="ingresdate" />
+        </EntityType>
+        <EntityType Name="errortest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="sysgen_efingres_unittestModelStoreContainer">
+          <EntitySet Name="ansaettelse" EntityType="Self.ansaettelse" Schema="efingres" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="efingres" store:Type="Tables" />
+          <EntitySet Name="errortest" EntityType="Self.errortest" Schema="efingres" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sysgen_efingres_unittestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ContactTitle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Region" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+          <Property Name="ContactDate" Type="DateTime" />
+        </EntityType>
+        <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customer" EntityType="sysgen_efingres_unittestModel.Customer" />
+          <EntitySet Name="ErrorTest" EntityType="sysgen_efingres_unittestModel.ErrorTest" />
+          <EntitySet Name="ansaettelse" EntityType="sysgen_efingres_unittestModel.ansaettelse" />
+        </EntityContainer>
+        <EntityType Name="ErrorTest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ansaettelse">
+          <Key>
+            <PropertyRef Name="medl_ident" />
+            <PropertyRef Name="lbnr" />
+          </Key>
+          <Property Name="medl_ident" Type="Int32" Nullable="false" />
+          <Property Name="lbnr" Type="Int32" Nullable="false" />
+          <Property Name="arbst_nr" Type="Int32" Nullable="false" />
+          <Property Name="fra_dato" Type="DateTime" Nullable="false" />
+          <Property Name="til_dato" Type="DateTime" Nullable="false" />
+          <Property Name="form" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="arbejds_time" Type="Decimal" Nullable="false" Precision="14" Scale="2" />
+          <Property Name="primaer_ansaettelse" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="reg_tid" Type="DateTime" Nullable="false" />
+          <Property Name="reg_init" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="reg_vers_nr" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sysgen_efingres_unittestModelStoreContainer" CdmEntityContainer="TestEntities">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="sysgen_efingres_unittestModel.Customer">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="ContactDate" ColumnName="contactdate" />
+                <ScalarProperty Name="CustomerID" ColumnName="customerid" />
+                <ScalarProperty Name="CompanyName" ColumnName="companyname" />
+                <ScalarProperty Name="ContactName" ColumnName="contactname" />
+                <ScalarProperty Name="ContactTitle" ColumnName="contacttitle" />
+                <ScalarProperty Name="Address" ColumnName="address" />
+                <ScalarProperty Name="City" ColumnName="city" />
+                <ScalarProperty Name="Region" ColumnName="region" />
+                <ScalarProperty Name="PostalCode" ColumnName="postalcode" />
+                <ScalarProperty Name="Country" ColumnName="country" />
+                <ScalarProperty Name="Phone" ColumnName="phone" />
+                <ScalarProperty Name="Fax" ColumnName="fax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorTest">
+            <EntityTypeMapping TypeName="sysgen_efingres_unittestModel.ErrorTest">
+              <MappingFragment StoreEntitySet="errortest">
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ansaettelse">
+            <EntityTypeMapping TypeName="sysgen_efingres_unittestModel.ansaettelse">
+              <MappingFragment StoreEntitySet="ansaettelse">
+                <ScalarProperty Name="reg_vers_nr" ColumnName="reg_vers_nr" />
+                <ScalarProperty Name="reg_init" ColumnName="reg_init" />
+                <ScalarProperty Name="reg_tid" ColumnName="reg_tid" />
+                <ScalarProperty Name="primaer_ansaettelse" ColumnName="primaer_ansaettelse" />
+                <ScalarProperty Name="arbejds_time" ColumnName="arbejds_time" />
+                <ScalarProperty Name="form" ColumnName="form" />
+                <ScalarProperty Name="til_dato" ColumnName="til_dato" />
+                <ScalarProperty Name="fra_dato" ColumnName="fra_dato" />
+                <ScalarProperty Name="arbst_nr" ColumnName="arbst_nr" />
+                <ScalarProperty Name="lbnr" ColumnName="lbnr" />
+                <ScalarProperty Name="medl_ident" ColumnName="medl_ident" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

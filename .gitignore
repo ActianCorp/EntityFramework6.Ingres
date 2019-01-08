@@ -7,3 +7,8 @@
 [Oo]bj/
 [Oo]bj/
 packages/*/
+ef6provider/packages/*/
+ef6provider/.vs/*/
+db.lock
+*.ide
+ingresclient

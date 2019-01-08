@@ -52,16 +52,8 @@ namespace EntityFramework6.Ingres.Tests
         public static void IgnoreExceptOnBuildServer(string message, params object[] args)
             => IgnoreExceptOnBuildServer(string.Format(message, args));
 
-        public static void MinimumPgVersion(IngresConnection conn, string minVersion, string ignoreText = null)
+        public static void MinimumIngresVersion(IngresConnection conn, string minVersion, string ignoreText = null)
         {
-            //var min = new Version(minVersion);
-            //if (conn.PostgreSqlVersion < min)
-            //{
-            //    var msg = $"Postgresql backend version {conn.PostgreSqlVersion} is less than the required {min}";
-            //    if (ignoreText != null)
-            //        msg += ": " + ignoreText;
-            //    Assert.Ignore(msg);
-            //}
         }
 
         public static string GetUniqueIdentifier(string prefix)

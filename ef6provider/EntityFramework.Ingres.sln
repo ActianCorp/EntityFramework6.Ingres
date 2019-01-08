@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.Ingres", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.Ingres.Tests", "..\test\EntityFramework6.Ingres.Tests\EntityFramework6.Ingres.Tests.csproj", "{F4E0720A-0771-4F08-B9FC-B860A2251A3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.Ingres.ConsoleTest", "..\test\EntityFramework6.Ingres.ConsoleTest\EntityFramework6.Ingres.ConsoleTest.csproj", "{28D8A842-FA8C-4258-8705-CB58C3E36C4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F4E0720A-0771-4F08-B9FC-B860A2251A3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4E0720A-0771-4F08-B9FC-B860A2251A3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4E0720A-0771-4F08-B9FC-B860A2251A3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D8A842-FA8C-4258-8705-CB58C3E36C4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D8A842-FA8C-4258-8705-CB58C3E36C4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D8A842-FA8C-4258-8705-CB58C3E36C4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D8A842-FA8C-4258-8705-CB58C3E36C4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

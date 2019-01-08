@@ -34,7 +34,6 @@ using System.Data.Entity.Core.Mapping;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
-//using NpgsqlTypes;
 
 // ReSharper disable once CheckNamespace
 namespace EntityFramework6.Ingres.Tests
@@ -44,12 +43,27 @@ namespace EntityFramework6.Ingres.Tests
         [OneTimeSetUp]
         public new void TestFixtureSetup()
         {
-            using (var context = new BloggingContext(ConnectionString))
+            using (var cleanupConn = OpenConnection(ConnectionString))
             {
-                //    if (context.Database.Exists())
-                //        context.Database.Delete();//We delete to be 100% schema is synced
-                //    context.Database.Create();
-                context.Database.CreateIfNotExists();
+                try
+                {
+                    cleanupConn.ExecuteNonQuery("DROP TABLE IF EXISTS Blogs");
+                    cleanupConn.ExecuteNonQuery("DROP TABLE IF EXISTS Posts");
+                    cleanupConn.ExecuteNonQuery("DROP TABLE IF EXISTS Users");
+                    cleanupConn.ExecuteNonQuery("DROP TABLE IF EXISTS Administrators");
+                    cleanupConn.ExecuteNonQuery("DROP TABLE IF EXISTS Editors");
+                    cleanupConn.ExecuteNonQuery("DROP TABLE IF EXISTS NoColumnsEntities");
+                    cleanupConn.ExecuteNonQuery("DROP TABLE IF EXISTS __MigrationHistory");
+                }
+                catch (DbException) { /* ignore */}
+            }
+
+                using (var context = new BloggingContext(ConnectionString))
+            {
+                if (context.Database.Exists())
+                    context.Database.Delete();//We delete to be 100% schema is synced
+                context.Database.Create();
+                //context.Database.CreateIfNotExists();
             }
 
             // Create sequence for the IntComputedValue property.
@@ -64,14 +78,14 @@ namespace EntityFramework6.Ingres.Tests
                 createSequenceConn.ExecuteNonQuery("create sequence blog_int_computed_value_seq");
               //createSequenceConn.ExecuteNonQuery("alter table \"dbo\".\"Blogs\" alter column \"IntComputedValue\" set default nextval('blog_int_computed_value_seq');");
               //createSequenceConn.ExecuteNonQuery("alter table \"dbo\".\"Posts\" alter column \"VarbitColumn\" type varbit using null");
-                createSequenceConn.ExecuteNonQuery("alter table         \"Blogs\" alter column \"IntComputedValue\" set default nextval('blog_int_computed_value_seq');");
-                createSequenceConn.ExecuteNonQuery("alter table         \"Posts\" alter column \"VarbitColumn\" type varbit using null");
+                createSequenceConn.ExecuteNonQuery("alter table         \"Blogs\" alter column \"IntComputedValue\" integer4    with default next value for blog_int_computed_value_seq");
+              //createSequenceConn.ExecuteNonQuery("alter table         \"Posts\" alter column \"VarbitColumn\" type varbit using null");
               //createSequenceConn.ExecuteNonQuery("CREATE OR REPLACE FUNCTION \"dbo\".\"StoredAddFunction\"(integer, integer) RETURNS integer AS $$ SELECT $1 + $2; $$ LANGUAGE SQL;");
               //createSequenceConn.ExecuteNonQuery("CREATE OR REPLACE FUNCTION \"dbo\".\"StoredEchoFunction\"(integer) RETURNS integer AS $$ SELECT $1; $$ LANGUAGE SQL;");
               //createSequenceConn.ExecuteNonQuery("CREATE OR REPLACE FUNCTION \"dbo\".\"GetBlogsByName\"(text) RETURNS TABLE(\"BlogId\" int, \"Name\" text, \"IntComputedValue\" int) as $$ select \"BlogId\", \"Name\", \"IntComputedValue\" from \"dbo\".\"Blogs\" where \"Name\" ilike '%' || $1 || '%' $$ LANGUAGE SQL;");
-                createSequenceConn.ExecuteNonQuery("CREATE OR REPLACE FUNCTION         \"StoredAddFunction\"(integer, integer) RETURNS integer AS $$ SELECT $1 + $2; $$ LANGUAGE SQL;");
-                createSequenceConn.ExecuteNonQuery("CREATE OR REPLACE FUNCTION         \"StoredEchoFunction\"(integer) RETURNS integer AS $$ SELECT $1; $$ LANGUAGE SQL;");
-                createSequenceConn.ExecuteNonQuery("CREATE OR REPLACE FUNCTION         \"GetBlogsByName\"(text) RETURNS TABLE(\"BlogId\" int, \"Name\" text, \"IntComputedValue\" int) as $$ select \"BlogId\", \"Name\", \"IntComputedValue\" from \"dbo\".\"Blogs\" where \"Name\" ilike '%' || $1 || '%' $$ LANGUAGE SQL;");
+              //createSequenceConn.ExecuteNonQuery("CREATE OR REPLACE FUNCTION         \"StoredAddFunction\"(integer, integer) RETURNS integer AS $$ SELECT $1 + $2; $$ LANGUAGE SQL;");
+              //createSequenceConn.ExecuteNonQuery("CREATE OR REPLACE FUNCTION         \"StoredEchoFunction\"(integer) RETURNS integer AS $$ SELECT $1; $$ LANGUAGE SQL;");
+              //createSequenceConn.ExecuteNonQuery("CREATE OR REPLACE FUNCTION         \"GetBlogsByName\"(text) RETURNS TABLE(\"BlogId\" int, \"Name\" text, \"IntComputedValue\" int) as $$ select \"BlogId\", \"Name\", \"IntComputedValue\" from \"dbo\".\"Blogs\" where \"Name\" ilike '%' || $1 || '%' $$ LANGUAGE SQL;");
             }
         }
 
@@ -191,7 +205,7 @@ namespace EntityFramework6.Ingres.Tests
                 new EdmFunctionPayload
                 {
                     ParameterTypeSemantics = ParameterTypeSemantics.AllowImplicitConversion,
-                    Schema = "dbo",
+                    Schema = "ingres",
                     IsComposable = true,
                     IsNiladic = false,
                     IsBuiltIn = false,
@@ -218,7 +232,7 @@ namespace EntityFramework6.Ingres.Tests
                 new EdmFunctionPayload
                 {
                     ParameterTypeSemantics = ParameterTypeSemantics.AllowImplicitConversion,
-                    Schema = "dbo",
+                    Schema = "ingres",
                     IsComposable = true,
                     IsNiladic = false,
                     IsBuiltIn = false,
@@ -268,7 +282,7 @@ namespace EntityFramework6.Ingres.Tests
                 new EdmFunctionPayload
                 {
                     ParameterTypeSemantics = ParameterTypeSemantics.AllowImplicitConversion,
-                    Schema = "dbo",
+                    Schema = "ingres",
                     IsComposable = true,
                     IsNiladic = false,
                     IsBuiltIn = false,

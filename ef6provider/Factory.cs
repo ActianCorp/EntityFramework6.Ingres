@@ -6,7 +6,7 @@
 ** Name: Factory.cs
 **
 ** Description:
-**	Implements the .NET Entity Framework DbProviderManifext class
+**	Implements the .NET Entity Framework DbProviderManifest class
 **	using an XML definition that provides a symmetrical type
 **	mapping to the Entity Data Model.
 **	The manifest describes the types and functions supported
@@ -29,6 +29,7 @@ store.
 
 using System.Data.Common;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.EntityClient;
 using Ingres.Client;
 
 namespace Ingres
@@ -45,7 +46,11 @@ namespace Ingres
     {
         public DbProviderFactory ResolveProviderFactory(DbConnection connection)
         {
-            return IngresFactory.Instance;
+            if (connection is IngresConnection)
+                return IngresFactory.Instance;
+            if (connection is EntityConnection)
+                return EntityProviderFactory.Instance;
+            return null;
         }
     }
 

@@ -31,15 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Ingres.Client, Version=2.1.0.0, Culture=neutral, PublicKeyToken=363043b363d069c5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\mainwnt\build\ingres\dotnet\assembly\v2.1\Ingres.Client.dll</HintPath>
+      <HintPath>..\ingresclient\Ingres.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -52,15 +49,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandInterceptor.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="ProviderManifest.cs" />
     <Compile Include="ProviderServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlGeneration\DdlSqlGenerator.cs" />
+    <Compile Include="SqlGeneration\DmlSqlGenerator.cs" />
+    <Compile Include="SqlGeneration\ISqlFragment.cs" />
+    <Compile Include="SqlGeneration\JoinSymbol.cs" />
+    <Compile Include="SqlGeneration\KeyToListMap.cs" />
+    <Compile Include="SqlGeneration\MetadataHelpers.cs" />
+    <Compile Include="SqlGeneration\Migration.cs" />
+    <Compile Include="SqlGeneration\SkipClause.cs" />
+    <Compile Include="SqlGeneration\SqlBuilder.cs" />
+    <Compile Include="SqlGeneration\SqlGenerator.cs" />
+    <Compile Include="SqlGeneration\SqlSelectStatement.cs" />
+    <Compile Include="SqlGeneration\SqlWriter.cs" />
+    <Compile Include="SqlGeneration\StringUtil.cs" />
+    <Compile Include="SqlGeneration\Symbol.cs" />
+    <Compile Include="SqlGeneration\SymbolPair.cs" />
+    <Compile Include="SqlGeneration\SymbolTable.cs" />
+    <Compile Include="SqlGeneration\TopClause.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="StoreSchemaDefinition.ssdl" />
+    <EmbeddedResource Include="StoreSchemaDefinition.ssdl">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="StoreSchemaMapping.msl">
       <SubType>Designer</SubType>
     </EmbeddedResource>
