@@ -6,6 +6,7 @@ An Entity Framework 6 provider for Ingres.
 
 - This provider only works with Entity Framework 6.
 - This provider has not yet been published to nuget.org.
+- GitHub repository for source and release is located [here](https://github.com/ActianCorp/EntityFramework6.Ingres).
 
 ## Build
 
