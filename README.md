@@ -2,6 +2,8 @@
 
 An Entity Framework 6 provider for Ingres.
 
+Also see https://github.com/ActianCorp/Actian.EFCore
+
 ## Notes
 
 - This provider only works with Entity Framework 6.
